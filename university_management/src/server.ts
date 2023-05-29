@@ -1,14 +1,12 @@
 import mongoose from "mongoose";
 import app from "./app";
-const port: number = 5000;
-
+const port = 5000;
+import config from "./config/index";
 async function db() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://university:1234567890@cluster0.hurbec0.mongodb.net"
-    );
+    await mongoose.connect(config.database_url as string);
     console.log("Connection to DB success");
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
   }
 }
