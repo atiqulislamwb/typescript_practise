@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
-// import userRoutes from "./app/modules/user/user.route";
+import userRoutes from './modules/users/users.route'
 const app: Application = express()
 
 app.use(cors())
@@ -9,12 +9,12 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 //Common Route
-app.get('/', (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
   res.status(200).json({ message: 'Api is Working' })
 })
 
 //Application Routes
-// app.use("/api/v1/user", userRoutes);
+app.use('/api/v1/users', userRoutes)
 
 //Error Handle
 app.use('/*', (req: Request, res: Response) => {
